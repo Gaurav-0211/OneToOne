@@ -8,4 +8,5 @@ import java.util.List;
 public interface StudentService {
     StudentDto createStudent(StudentDto studentDto);
     List<StudentDto> getAllStudent();
+    StudentDto getUserById(long id);
 }

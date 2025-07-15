@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 
@@ -44,5 +45,20 @@ public class BookServiceImpl implements BookService {
         return books.stream()
                 .map(book -> mapper.map(book, BookDto.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public  BookDto getUserById(long id) {
+        Optional<Book> byId = bookRepository.findById(id);
+
+        Book book;
+        if(byId.isPresent()){
+            book = byId.get();
+        }else{
+            throw new RuntimeException("User not found for the given id "+ id);
+        }
+
+        BookDto map = mapper.map(book, BookDto.class);
+        return map;
     }
 }
