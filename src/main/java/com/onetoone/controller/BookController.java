@@ -32,4 +32,17 @@ public class BookController {
         return new ResponseEntity<>(bookById, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable long id){
+        bookService.deleteBook(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/delete-all")
+    public ResponseEntity<Void> deleteAll(){
+        bookService.deleteAllBook();
+        return ResponseEntity.noContent().build();
+    }
+
+
 }

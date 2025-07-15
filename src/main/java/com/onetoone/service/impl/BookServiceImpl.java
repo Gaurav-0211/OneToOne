@@ -61,4 +61,14 @@ public class BookServiceImpl implements BookService {
         BookDto map = mapper.map(book, BookDto.class);
         return map;
     }
+
+    @Override
+    public void deleteBook(long id) {
+        bookRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteAllBook() {
+        bookRepository.deleteAll();
+    }
 }

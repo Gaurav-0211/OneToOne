@@ -1,7 +1,6 @@
 package com.onetoone.controller;
 
 
-import com.onetoone.dto.BookDto;
 import com.onetoone.dto.StudentDto;
 import com.onetoone.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,18 @@ public class StudentController {
     public ResponseEntity<StudentDto> getById(@PathVariable long id){
         StudentDto studentById = studentService.getUserById(id);
         return new ResponseEntity<>(studentById, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteStudent(@PathVariable long id){
+        studentService.deleteStudent(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/delete-all-student")
+    public ResponseEntity<Void> deleteAll(){
+        studentService.deleteAllStudent();
+        return ResponseEntity.noContent().build();
     }
 
 }
